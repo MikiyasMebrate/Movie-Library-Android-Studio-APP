@@ -25,6 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import java.util.Objects;
+
 public class Player extends AppCompatActivity {
 
     public static final String TAG = "TAG";
@@ -37,7 +39,7 @@ public class Player extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         
         spiiner = findViewById(R.id.progressBar);
         fullScreenOp = findViewById(R.id.fullScreenOp);
@@ -60,12 +62,9 @@ public class Player extends AppCompatActivity {
         MediaController mc = new MediaController(this);
         videoPlayer.setMediaController(mc);
 
-        videoPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                videoPlayer.start();
-                spiiner.setVisibility(View.GONE);
-            }
+        videoPlayer.setOnPreparedListener(mp -> {
+            videoPlayer.start();
+            spiiner.setVisibility(View.GONE);
         });
         
         fullScreenOp.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +72,7 @@ public class Player extends AppCompatActivity {
             public void onClick(View v) {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                getSupportActionBar().hide();
+                Objects.requireNonNull(getSupportActionBar()).hide();
                 fullScreenOp.setVisibility(View.GONE);
                 frameLayout.setLayoutParams(new ConstraintLayout.LayoutParams(new WindowManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)));
                 videoPlayer.setLayoutParams(new FrameLayout.LayoutParams(new WindowManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)));
@@ -94,8 +93,8 @@ public class Player extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         fullScreenOp.setVisibility(View.VISIBLE);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        getSupportActionBar().show();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        Objects.requireNonNull(getSupportActionBar()).show();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         int heightValue = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,220,getResources().getDisplayMetrics());
         frameLayout.setLayoutParams(new ConstraintLayout.LayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,heightValue)));

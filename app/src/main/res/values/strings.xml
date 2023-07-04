@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MyVideosLibrary</string>
+    <string name="todo">TODO</string>
+    <string name="this_is_the_title">This is the title</string>
+    <string name="this_is_the_title_of_our_video">This is the title of our video</string>
+    <string name="google">Google</string>
+    <string name="_100k_views">100K Views</string>
+    <string name="_5_days_ago">5 Days Ago</string>
+    <string name="video_description">Video Description</string>
 </resources>

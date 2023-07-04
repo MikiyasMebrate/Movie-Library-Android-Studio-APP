@@ -17,8 +17,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> {
-    private List<Video> allVideos;
-    private Context context;
+    private final List<Video> allVideos;
+    private final Context context;
 
     public VideoAdapter(Context ctx, List<Video> videos){
         this.allVideos = videos;
