@@ -66,12 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
                       v.setTitle(video.getString("title"));
                       v.setDescription(video.getString("overview"));
-                      v.setAuthor(video.getString("release_date"));
-                      v.setImageUrl(path + video.getString("poster_path"));
-                      //JSONArray videoUrl = video.getJSONArray("poster_path");
-                      v.setVideoUrl(video.getString("poster_path"));
+                      v.setImageUrl(path + video.getString("backdrop_path"));
+                      v.setRate(video.getString("vote_average"));
+                      v.setRelease_date(video.getString("release_date"));
 //
-                    Log.d(TAG, "onResponse5: "+ v.getImageUrl());
+                   // Log.d(TAG, "onResponse5: "+ v.getImageUrl());
                       all_videos.add(v);
                       adapter.notifyDataSetChanged();
 

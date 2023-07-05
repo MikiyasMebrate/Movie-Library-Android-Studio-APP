@@ -5,9 +5,17 @@ import java.io.Serializable;
 public class Video implements Serializable {
     private String title;
     private String description;
-    private String author;
-    private String videoUrl;
+    private String release_date;
     private String imageUrl;
+    private String rate;
+
+    public String getRate(){
+        return  rate;
+    }
+
+    public void setRate(String rate){
+        this.rate="Rating: "+rate;
+    }
 
     public String getTitle() {
         return title;
@@ -25,21 +33,15 @@ public class Video implements Serializable {
         this.description = description;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setRelease_date(String release_date) {
+        this.release_date ="Release date: "+  release_date;
     }
 
-    public String getVideoUrl() {
-        return videoUrl;
-    }
 
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
-    }
 
     public String getImageUrl() {
         return imageUrl;
